@@ -1,0 +1,54 @@
+static bool Agregar_Producto(List<string> listaArticulos, string articulo)
+{
+    bool agregado = false;
+    listaArticulos.Add(articulo);
+    if (listaArticulos.Contains(articulo))
+    {
+        agregado = true;
+    }
+    return agregado;
+}
+
+static bool Borrar_Producto(List<string> listaArticulos, string articulo)
+{
+    bool eliminado = listaArticulos.Remove(articulo);
+    return eliminado;
+}
+
+static void Mostrar_todos_Productos(List<string> listaArticulos)
+{
+    foreach (string producto in listaArticulos)
+    {
+        Console.WriteLine(producto);
+    }
+}
+
+static bool Modificar_Producto(List<string> listaArticulos, string articulo, string reemplazo)
+{
+    int indice = listaArticulos.IndexOf(articulo);
+    if (indice != -1)
+    {
+        listaArticulos[indice] = reemplazo;
+        return true;
+    }
+    return false;
+}
+
+static int Buscar_Producto(List<string> listaArticulos, string articulo)
+{
+    int posicion = listaArticulos.IndexOf(articulo);
+    return posicion;
+}
+
+// Código principal
+List<string> inventarioTienda = new List<string>();
+
+bool fueAgregado = Agregar_Producto(inventarioTienda, "cereal"); // true
+
+bool fueEliminado = Borrar_Producto(inventarioTienda, "leche"); // false
+
+Mostrar_todos_Productos(inventarioTienda); // cereal
+
+bool fueModificado = Modificar_Producto(inventarioTienda, "cereal", "galletitas"); // true
+
+int posicionGalletitas = Buscar_Producto(inventarioTienda, "galletitas"); // 0
